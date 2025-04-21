@@ -142,10 +142,9 @@ def getRaceData(season):
     
     # Loop through each driver
     for driver in os.listdir(base_dir):
-        for i in range(1,10):
-            driver_path = os.path.join(base_dir, driver[i])
-            if not os.path.isdir(driver_path):
-                continue
+        driver_path = os.path.join(base_dir, driver)
+        if not os.path.isdir(driver_path):
+            continue
         
         # Loop through each race folder 
         for race in os.listdir(driver_path):
