@@ -1,9 +1,10 @@
-Optimizing car performance in Formula 1 through AI-Driven Telemetry Data Analysis
+# *Optimizing car performance in Formula 1 through AI-Driven Telemetry Data Analysis*
 
 A Streamlit app for analyzing Formula 1 telemetry, weather, and tire data using AI/ML techniques.
+
 Jayant Chawla
 
-TO RUN USE: streamlit run streamlit_app.py
+To run code locally: streamlit run streamlit_app.py
 
 Features:
 
