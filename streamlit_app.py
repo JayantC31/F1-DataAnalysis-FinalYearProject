@@ -563,7 +563,6 @@ def main():
 
             pcaimg = Image.open("Screenshot 2025-03-26 151118.png")
 
-            # Display it
             st.image(pcaimg, use_container_width =True)
 
             st.write("")
@@ -574,24 +573,24 @@ def main():
             st.write("        - The Azerbaijan and Las Vegas tracks are very similar in which they are both street circuits with similar characteristics, which is why they are so close to each other in the PCA plot. They have a lot of high speed sections which requires higher gears and long straights, which is why they have a high PC2 score.")            
             st.write("        - The mexican circuit has a very high altitude and elevation compared to sea level, which is why it has a very low PC3 score, and it has a low PC1 score as it is a brake intensive circuit.")
             st.divider()
-            placeholder = st.empty()
-            placeholder.write("Loading elbow method...")
-            fig_elbow = ts.runElbowMethod()
             
-            buf = BytesIO()
-            fig_elbow.savefig(buf, format="png", bbox_inches="tight")
-            buf.seek(0)  # reset the pointer to the beginning of the buffer
+            
             st.write("The Elbow Method: ")
             #st.image(buf, width=600)
-            placeholder = st.empty()  # image is displayed in the app
+            
             st.write("The reason for the elbow method is to determine the optimal number of clusters for the clustering algorithm used in this analysis.")
-            st.pyplot(fig_elbow)
+            
+            elbowimage = Image.open("Screenshot 2025-03-26 151435.png")
+
+            st.image(elbowimage, use_container_width =True)
+
+
             st.divider()
-            placeholder = st.empty()
-            placeholder.write("Loading clustering analysis...")
-            fig2, pca_cluster_df = ts.runKMeans()
-            st.pyplot(fig2)
-            placeholder.empty()
+            
+            clusterimage = Image.open("Screenshot 2025-03-26 152742.png")
+
+            st.image(clusterimage, use_container_width =True)
+
             st.write("This KMeans clustering algorithm showcases the different clusters of circuits based on the PCA components. The clusters are based on the similarity of the circuits in terms of the telemetry data gathered.")
             st.write("By reducing the high-dimensional telemetry data to its most significant components using PCA, we can effectively group circuits that share similar performance characteristics. ")
             st.write("These insights can help teams understand the underlying patterns in circuit performance, potentially guiding race strategies and car setups given each circuit's unique characteristics.")
