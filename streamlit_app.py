@@ -7,6 +7,7 @@ from io import BytesIO
 import drivercomparisons as dc
 import strategies as stg
 from streamlit_option_menu import option_menu
+from PIL import Image
 # Function to display the CSV file
 def display_csv(file_path):
     """
@@ -516,20 +517,54 @@ def main():
             placeholder.write("Loading analysis for PCA and computing clustering method for circuit differentiation...")
 
             
-            fig1, pca_df, variance_ratio, loadings = ts.runPCA()
-
             placeholder.empty()
             st.write("PCA analysis complete. See the visualization and insights below: ")
             st.write("")
             
+
+            
+
             st.write("After basic data preprocessing, the data can be split into 3 main components(PC1,PC2,PC3) which explain most of the variance in the data.")
-            st.write("The variance ratio can be shown as: ", variance_ratio)
-            st.write("The PCA components based on each variable can be shown as: ", loadings)
+            st.write("The variance ratio can be shown as: ")
+
+        
+            html_table = """
+            <table style="width:50%; border-collapse: collapse;" border="1">
+                <tr>
+                    <th>Value</th>
+                    <th>Variance Captured</th>
+                </tr>
+                <tr>
+                    <td style="text-align:center;">PC1</td>
+                    <td style="text-align:center;">0.2802</td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;">PC2</td>
+                    <td style="text-align:center;">0.2018</td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;">PC3</td>
+                    <td style="text-align:center;">0.1205</td>
+                </tr>
+            </table>
+            """
+
+            # Display in Streamlit
+            st.markdown(html_table, unsafe_allow_html=True)
+
+
+            st.write("The PCA components based on each variable can be shown as: ")
+
+            loadings = pd.read_csv("2025-04-21T20-44_export.csv")
+            st.dataframe(loadings)
             st.write("        - For PC1, the engine performance and variable driving styles cause the most effect, with the circuits that are characterized by sustained high throttle usage, elevated RPM, and longer track lengths, are seen to have an increased PC1 level. However, it seems to have a negative loading on lower gear ratios, which means a low PC1 could mean the track is more brake-intensive \n This suggests that on these circuits, drivers adopt an aggressive driving style, and maintaining high power output — which can come at the cost of increased tyre wear and potentially greater engine stress, however the engine stress can not be seen from the telemetry data.")
             st.write("        - PC2 is mainly differenciated with the circuit’s layout. There are high positive loadings on the track's lap time, track length, and the straight line measures which include the max straight length and total straight distance. There are some negative contributions from a higher number of turns and low-speed corners which suggests that the lower the PC2 loading, the more technical the average time spent in the circuit is.")
             st.write("        - PC3 is very much influenced by atmospheric pressure, and the elevation, which means it takes into account the location of the circuits, with significant negative loading from the track's average elevation. Also, factors like the number of turns and higher gear ratios contribute to PC3. Thus, a high PC3 score points to circuits where environmental conditions and technical cornering demands are more pronounced, while lower PC3 scores reflect circuits with lower elevation variation and less technical complexity.")
 
-            st.pyplot(fig1)
+            pcaimg = Image.open("Screenshot 2025-03-26 151118.png")
+
+            # Display it
+            st.image(pcaimg, use_container_width =True)
 
             st.write("")
             st.write("This 3d PCA plot provides a visual summary of the complex telemetry data gathered by the cars, and highlights the most important patterns and relationships among circuits.")
@@ -547,10 +582,10 @@ def main():
             fig_elbow.savefig(buf, format="png", bbox_inches="tight")
             buf.seek(0)  # reset the pointer to the beginning of the buffer
             st.write("The Elbow Method: ")
-            st.image(buf, width=600)
+            #st.image(buf, width=600)
             placeholder = st.empty()  # image is displayed in the app
             st.write("The reason for the elbow method is to determine the optimal number of clusters for the clustering algorithm used in this analysis.")
-            #st.pyplot(fig_elbow)
+            st.pyplot(fig_elbow)
             st.divider()
             placeholder = st.empty()
             placeholder.write("Loading clustering analysis...")
