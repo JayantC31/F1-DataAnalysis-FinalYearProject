@@ -1,0 +1,2 @@
+Time,Driver,LapTime,LapNumber,Stint,PitOutTime,PitInTime,Sector1Time,Sector2Time,Sector3Time,Sector1SessionTime,Sector2SessionTime,Sector3SessionTime,SpeedI1,SpeedI2,SpeedFL,SpeedST,IsPersonalBest,Compound,TyreLife,FreshTyre,LapStartTime,LapStartDate,Position,Deleted
+0 days 01:01:45.752000,GAS,0 days 00:02:01.453000,1.0,1.0,,0 days 01:01:44.496000,,0 days 00:00:36.134000,0 days 00:00:40.034000,,0 days 01:01:05.736000,0 days 01:01:45.752000,221.0,213.0,,224.0,False,MEDIUM,1.0,True,0 days 00:59:43.836000,2024-03-09 17:03:59.056,20.0,False
