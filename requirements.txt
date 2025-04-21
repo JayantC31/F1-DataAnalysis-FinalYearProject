@@ -4,4 +4,4 @@ numpy
 matplotlib
 scikit-learn
 streamlit
-streamlit‑option‑menu
+streamlit-option-menu
