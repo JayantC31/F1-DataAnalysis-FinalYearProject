@@ -4,6 +4,11 @@ A Streamlit app for analyzing Formula 1 telemetry, weather, and tire data using
 
 Jayant Chawla
 
+
+Please visit website: https://jayant-f1-data-analysis.streamlit.app/
+
+This will show everything
+
 To run code locally: streamlit run streamlit_app.py
 
 Features:
